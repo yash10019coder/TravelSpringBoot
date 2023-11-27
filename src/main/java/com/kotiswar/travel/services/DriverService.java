@@ -31,6 +31,20 @@ public class DriverService {
         return driverRepository.save(driver);
     }
 
+    public Driver updateDriver(Long id, Driver updatedDriver) {
+        return driverRepository.findById(id)
+                .map(driver -> {
+                    driver.setName(updatedDriver.getName());
+                    driver.setLicenseNumber(updatedDriver.getLicenseNumber());
+                    driver.setContactInfo(updatedDriver.getContactInfo());
+                    return driverRepository.save(driver);
+                })
+                .orElseGet(() -> {
+                    updatedDriver.setId(id);
+                    return driverRepository.save(updatedDriver);
+                });
+    }
+
     public void deleteDriver(Long id) {
         driverRepository.deleteById(id);
     }
