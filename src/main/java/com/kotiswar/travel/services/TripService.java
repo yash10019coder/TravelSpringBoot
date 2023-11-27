@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class TripService {
+    //TODO: Use DTO instead of entity
 
     private final TripRepo tripRepository;
 
